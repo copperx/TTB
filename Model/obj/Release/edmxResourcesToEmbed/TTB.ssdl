@@ -1,0 +1,1038 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TTBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="authors">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="collections">
+    <Key>
+      <PropertyRef Name="collectionID" />
+    </Key>
+    <Property Name="collectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="collectionName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="companies">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyName" Type="varchar" MaxLength="100" />
+    <Property Name="companyWebsite" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="companyTypes">
+    <Key>
+      <PropertyRef Name="companyTypeID" />
+    </Key>
+    <Property Name="companyTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="typeName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.companyTypesToCompanies' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="companyTypesToCompanies">
+    <Key>
+      <PropertyRef Name="companyTypeID" />
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyTypeID" Type="int" Nullable="false" />
+    <Property Name="companyID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dataSets">
+    <Key>
+      <PropertyRef Name="dataSetID" />
+    </Key>
+    <Property Name="dataSetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dataSetName" Type="nvarchar" MaxLength="50" />
+    <Property Name="specificProjectID" Type="int" />
+    <Property Name="yAxis" Type="datetime" />
+    <Property Name="xAxis" Type="datetime" />
+  </EntityType>
+  <EntityType Name="episodes">
+    <Key>
+      <PropertyRef Name="episodeID" />
+    </Key>
+    <Property Name="episodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="episodeName" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.episodesToSeasons' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="episodesToSeasons">
+    <Key>
+      <PropertyRef Name="seasonID" />
+      <PropertyRef Name="episodeID" />
+    </Key>
+    <Property Name="seasonID" Type="int" Nullable="false" />
+    <Property Name="episodeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="events">
+    <Key>
+      <PropertyRef Name="eventID" />
+    </Key>
+    <Property Name="eventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="eventDate" Type="date" />
+    <Property Name="eventName" Type="varchar" MaxLength="50" />
+    <Property Name="typeID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.eventsToProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="eventsToProjects">
+    <Key>
+      <PropertyRef Name="eventID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="eventID" Type="int" Nullable="false" />
+    <Property Name="projectID" Type="int" Nullable="false" />
+    <Property Name="listPriority" Type="int" />
+  </EntityType>
+  <EntityType Name="eventTypes">
+    <Key>
+      <PropertyRef Name="eventTypeID" />
+    </Key>
+    <Property Name="eventTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="eventTypeName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="genres">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="genreName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.genresToProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="genresToProjects">
+    <Key>
+      <PropertyRef Name="genreID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="genreID" Type="int" Nullable="false" />
+    <Property Name="projectID" Type="int" Nullable="false" />
+    <Property Name="dateAdded" Type="date" />
+    <Property Name="subGenre" Type="varchar" MaxLength="50" />
+    <Property Name="listPriority" Type="int" />
+  </EntityType>
+  <EntityType Name="items">
+    <Key>
+      <PropertyRef Name="ItemsId" />
+    </Key>
+    <Property Name="ItemsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="authorID" Type="int" />
+    <Property Name="slug" Type="varchar" MaxLength="100" />
+    <Property Name="itemType" Type="int" />
+    <Property Name="publishDate" Type="date" />
+    <Property Name="title" Type="varchar" MaxLength="50" />
+    <Property Name="thumbnail" Type="varchar" MaxLength="50" />
+    <Property Name="projectID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.itemsToCollections' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="itemsToCollections">
+    <Key>
+      <PropertyRef Name="itemID" />
+      <PropertyRef Name="collectionID" />
+    </Key>
+    <Property Name="itemID" Type="int" Nullable="false" />
+    <Property Name="collectionID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobListings">
+    <Key>
+      <PropertyRef Name="jobListingID" />
+    </Key>
+    <Property Name="jobListingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="orderID" Type="int" Nullable="false" />
+    <Property Name="realEmail" Type="varchar" MaxLength="50" />
+    <Property Name="anonEmail" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userID" Type="int" Nullable="false" />
+    <Property Name="productID" Type="int" Nullable="false" />
+    <Property Name="orderDate" Type="datetime" Nullable="false" />
+    <Property Name="startDate" Type="datetime" />
+    <Property Name="endDate" Type="datetime" />
+    <Property Name="autoRenew" Type="bit" />
+  </EntityType>
+  <EntityType Name="people">
+    <Key>
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="personID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="primaryRoleID" Type="int" />
+    <Property Name="archivalTBLink" Type="varchar" MaxLength="100" />
+    <Property Name="gender" Type="varchar" MaxLength="1" />
+    <Property Name="birthdate" Type="date" />
+    <Property Name="birthplace" Type="varchar" MaxLength="50" />
+    <Property Name="networth" Type="varchar" MaxLength="50" />
+    <Property Name="personalNotes" Type="varchar(max)" />
+    <Property Name="internalNotes" Type="varchar(max)" />
+    <Property Name="awardNotes" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="peopleRoles">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roleTitle" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="peopleToCompanies">
+    <Key>
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="personID" Type="int" Nullable="false" />
+    <Property Name="companyID" Type="int" />
+    <Property Name="roleID" Type="int" />
+    <Property Name="contractNote" Type="varchar(max)" />
+    <Property Name="startDate" Type="date" />
+    <Property Name="endDate" Type="date" />
+    <Property Name="current" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.peopleToProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="peopleToProjects">
+    <Key>
+      <PropertyRef Name="personID" />
+      <PropertyRef Name="projectID" />
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="personID" Type="int" Nullable="false" />
+    <Property Name="projectID" Type="int" Nullable="false" />
+    <Property Name="roleID" Type="int" Nullable="false" />
+    <Property Name="contractNote" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type" Type="int" />
+    <Property Name="accessLevel" Type="int" />
+  </EntityType>
+  <EntityType Name="projects">
+    <Key>
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="projectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="projectName" Type="varchar" MaxLength="50" />
+    <Property Name="statusID" Type="int" />
+    <Property Name="ratingID" Type="int" />
+    <Property Name="recordCreatedDate" Type="datetime" />
+    <Property Name="recordUpdatedDate" Type="datetime" />
+    <Property Name="runtime" Type="varchar" MaxLength="50" />
+    <Property Name="logLine" Type="varchar" MaxLength="50" />
+    <Property Name="synopsis" Type="varchar" MaxLength="150" />
+    <Property Name="rottenTomatoesID" Type="varchar" MaxLength="150" />
+    <Property Name="imdbID" Type="varchar" MaxLength="150" />
+    <Property Name="metaCriticID" Type="varchar" MaxLength="150" />
+    <Property Name="productionNotes" Type="nvarchar" MaxLength="200" />
+    <Property Name="locationNotes" Type="nvarchar" MaxLength="200" />
+    <Property Name="distributionNotes" Type="nvarchar" MaxLength="200" />
+    <Property Name="awardNotes" Type="nvarchar" MaxLength="200" />
+    <Property Name="technicalNotes" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="quantitativeDataPoint">
+    <Key>
+      <PropertyRef Name="quantitativeDataPointID" />
+    </Key>
+    <Property Name="quantitativeDataPointID" Type="int" Nullable="false" />
+    <Property Name="dataSetID" Type="int" />
+    <Property Name="dateCreated" Type="datetime" />
+    <Property Name="dateUpdated" Type="datetime" />
+    <Property Name="customDataLabel" Type="varchar" MaxLength="50" />
+    <Property Name="dataAnnotation" Type="varchar" MaxLength="200" />
+    <Property Name="accordingTo" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.quantitativeDataToPeople' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="quantitativeDataToPeople">
+    <Key>
+      <PropertyRef Name="quantitativeDataPointID" />
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="quantitativeDataPointID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="personID" Type="int" Nullable="false" />
+    <Property Name="listPriority" Type="nvarchar" MaxLength="50" />
+    <Property Name="hidden" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.quantitativeDataToProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="quantitativeDataToProjects">
+    <Key>
+      <PropertyRef Name="quantitativeDataPointID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="quantitativeDataPointID" Type="int" Nullable="false" />
+    <Property Name="projectID" Type="int" Nullable="false" />
+    <Property Name="listPriority" Type="varchar" MaxLength="50" />
+    <Property Name="hidden" Type="bit" />
+  </EntityType>
+  <EntityType Name="ratings">
+    <Key>
+      <PropertyRef Name="ratingID" />
+    </Key>
+    <Property Name="ratingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ratingAgency" Type="varchar" MaxLength="50" />
+    <Property Name="ratingName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="relationships">
+    <Key>
+      <PropertyRef Name="relationshipID" />
+    </Key>
+    <Property Name="relationshipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="relationshipName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="socialSearches">
+    <Key>
+      <PropertyRef Name="socialSearchID" />
+    </Key>
+    <Property Name="socialSearchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="dataSetID" Type="int" />
+    <Property Name="type" Type="int" />
+    <Property Name="pageID" Type="int" />
+    <Property Name="keywords" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.socialSearchesToProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="socialSearchesToProjects">
+    <Key>
+      <PropertyRef Name="socialSearchID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="socialSearchID" Type="int" Nullable="false" />
+    <Property Name="projectID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.socialSearchToPeople' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="socialSearchToPeople">
+    <Key>
+      <PropertyRef Name="socialSearchID" />
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="socialSearchID" Type="int" Nullable="false" />
+    <Property Name="personID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="statuses">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="statusName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tags">
+    <Key>
+      <PropertyRef Name="tagID" />
+    </Key>
+    <Property Name="tagID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="description" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.tagsToProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tagsToProjects">
+    <Key>
+      <PropertyRef Name="tagID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="tagID" Type="int" Nullable="false" />
+    <Property Name="projectID" Type="int" Nullable="false" />
+    <Property Name="dateAdded" Type="date" />
+  </EntityType>
+  <EntityType Name="webLinks">
+    <Key>
+      <PropertyRef Name="weblinkID" />
+    </Key>
+    <Property Name="weblinkID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="link" Type="varchar" MaxLength="50" />
+    <Property Name="listPriority" Type="varchar" MaxLength="50" />
+    <Property Name="typeID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TTB.dbo.webLinksToProjects' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="webLinksToProjects">
+    <Key>
+      <PropertyRef Name="webLinkID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="webLinkID" Type="int" Nullable="false" />
+    <Property Name="projectID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="weblinksTypes">
+    <Key>
+      <PropertyRef Name="typeID" />
+    </Key>
+    <Property Name="typeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="typeName" Type="varchar" MaxLength="50" />
+    <Property Name="icon" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_companyTypesToCompanies_companies">
+    <End Role="companies" Type="Self.companies" Multiplicity="1" />
+    <End Role="companyTypesToCompanies" Type="Self.companyTypesToCompanies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="companies">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="companyTypesToCompanies">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_companyTypesToCompanies_companyTypes">
+    <End Role="companyTypes" Type="Self.companyTypes" Multiplicity="1" />
+    <End Role="companyTypesToCompanies" Type="Self.companyTypesToCompanies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="companyTypes">
+        <PropertyRef Name="companyTypeID" />
+      </Principal>
+      <Dependent Role="companyTypesToCompanies">
+        <PropertyRef Name="companyTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_episodesToSeasons_episodes">
+    <End Role="episodes" Type="Self.episodes" Multiplicity="1" />
+    <End Role="episodesToSeasons" Type="Self.episodesToSeasons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="episodes">
+        <PropertyRef Name="episodeID" />
+      </Principal>
+      <Dependent Role="episodesToSeasons">
+        <PropertyRef Name="episodeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_eventTypes">
+    <End Role="eventTypes" Type="Self.eventTypes" Multiplicity="0..1" />
+    <End Role="events" Type="Self.events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="eventTypes">
+        <PropertyRef Name="eventTypeID" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="typeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_eventsToProjects_events">
+    <End Role="events" Type="Self.events" Multiplicity="1" />
+    <End Role="eventsToProjects" Type="Self.eventsToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="events">
+        <PropertyRef Name="eventID" />
+      </Principal>
+      <Dependent Role="eventsToProjects">
+        <PropertyRef Name="eventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_eventsToProjects_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="eventsToProjects" Type="Self.eventsToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="eventsToProjects">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_genresToProjects_genres">
+    <End Role="genres" Type="Self.genres" Multiplicity="1" />
+    <End Role="genresToProjects" Type="Self.genresToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genres">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="genresToProjects">
+        <PropertyRef Name="genreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_genresToProjects_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="genresToProjects" Type="Self.genresToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="genresToProjects">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_items_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="0..1" />
+    <End Role="items" Type="Self.items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="items">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_itemsToCollections_collections">
+    <End Role="collections" Type="Self.collections" Multiplicity="1" />
+    <End Role="itemsToCollections" Type="Self.itemsToCollections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="collections">
+        <PropertyRef Name="collectionID" />
+      </Principal>
+      <Dependent Role="itemsToCollections">
+        <PropertyRef Name="collectionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_itemsToCollections_items">
+    <End Role="items" Type="Self.items" Multiplicity="1" />
+    <End Role="itemsToCollections" Type="Self.itemsToCollections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="ItemsId" />
+      </Principal>
+      <Dependent Role="itemsToCollections">
+        <PropertyRef Name="itemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jobListings_orders">
+    <End Role="orders" Type="Self.orders" Multiplicity="1" />
+    <End Role="jobListings" Type="Self.jobListings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="jobListings">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orders_products">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToCompanies_companies">
+    <End Role="companies" Type="Self.companies" Multiplicity="1" />
+    <End Role="peopleToCompanies" Type="Self.peopleToCompanies" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="companies">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="peopleToCompanies">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToCompanies_people">
+    <End Role="people" Type="Self.people" Multiplicity="1" />
+    <End Role="peopleToCompanies" Type="Self.peopleToCompanies" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="peopleToCompanies">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToCompanies_peopleRoles">
+    <End Role="peopleRoles" Type="Self.peopleRoles" Multiplicity="0..1" />
+    <End Role="peopleToCompanies" Type="Self.peopleToCompanies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="peopleRoles">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="peopleToCompanies">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToProjects_people">
+    <End Role="people" Type="Self.people" Multiplicity="1" />
+    <End Role="peopleToProjects" Type="Self.peopleToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="peopleToProjects">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToProjects_peopleRoles">
+    <End Role="peopleRoles" Type="Self.peopleRoles" Multiplicity="1" />
+    <End Role="peopleToProjects" Type="Self.peopleToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="peopleRoles">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="peopleToProjects">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToProjects_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="peopleToProjects" Type="Self.peopleToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="peopleToProjects">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_ratings">
+    <End Role="ratings" Type="Self.ratings" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ratings">
+        <PropertyRef Name="ratingID" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="ratingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_statuses">
+    <End Role="statuses" Type="Self.statuses" Multiplicity="0..1" />
+    <End Role="projects" Type="Self.projects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="statuses">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="projects">
+        <PropertyRef Name="statusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataPoint_dataSets">
+    <End Role="dataSets" Type="Self.dataSets" Multiplicity="0..1" />
+    <End Role="quantitativeDataPoint" Type="Self.quantitativeDataPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dataSets">
+        <PropertyRef Name="dataSetID" />
+      </Principal>
+      <Dependent Role="quantitativeDataPoint">
+        <PropertyRef Name="dataSetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataToPeople_people">
+    <End Role="people" Type="Self.people" Multiplicity="1" />
+    <End Role="quantitativeDataToPeople" Type="Self.quantitativeDataToPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="quantitativeDataToPeople">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataToPeople_quantitativeDataPoint">
+    <End Role="quantitativeDataPoint" Type="Self.quantitativeDataPoint" Multiplicity="1" />
+    <End Role="quantitativeDataToPeople" Type="Self.quantitativeDataToPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="quantitativeDataPoint">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Principal>
+      <Dependent Role="quantitativeDataToPeople">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataToProjects_quantitativeDataPoint">
+    <End Role="quantitativeDataPoint" Type="Self.quantitativeDataPoint" Multiplicity="1" />
+    <End Role="quantitativeDataToProjects" Type="Self.quantitativeDataToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="quantitativeDataPoint">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Principal>
+      <Dependent Role="quantitativeDataToProjects">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_socialSearchesToProjects_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="socialSearchesToProjects" Type="Self.socialSearchesToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="socialSearchesToProjects">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_socialSearchesToProjects_socialSearches">
+    <End Role="socialSearches" Type="Self.socialSearches" Multiplicity="1" />
+    <End Role="socialSearchesToProjects" Type="Self.socialSearchesToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="socialSearches">
+        <PropertyRef Name="socialSearchID" />
+      </Principal>
+      <Dependent Role="socialSearchesToProjects">
+        <PropertyRef Name="socialSearchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_socialSearchToPeople_people">
+    <End Role="people" Type="Self.people" Multiplicity="1" />
+    <End Role="socialSearchToPeople" Type="Self.socialSearchToPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="socialSearchToPeople">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_socialSearchToPeople_socialSearches">
+    <End Role="socialSearches" Type="Self.socialSearches" Multiplicity="1" />
+    <End Role="socialSearchToPeople" Type="Self.socialSearchToPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="socialSearches">
+        <PropertyRef Name="socialSearchID" />
+      </Principal>
+      <Dependent Role="socialSearchToPeople">
+        <PropertyRef Name="socialSearchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tagsToProjects_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="tagsToProjects" Type="Self.tagsToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="tagsToProjects">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tagsToProjects_tags">
+    <End Role="tags" Type="Self.tags" Multiplicity="1" />
+    <End Role="tagsToProjects" Type="Self.tagsToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tags">
+        <PropertyRef Name="tagID" />
+      </Principal>
+      <Dependent Role="tagsToProjects">
+        <PropertyRef Name="tagID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_webLinks_weblinksTypes">
+    <End Role="weblinksTypes" Type="Self.weblinksTypes" Multiplicity="0..1" />
+    <End Role="webLinks" Type="Self.webLinks" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weblinksTypes">
+        <PropertyRef Name="typeID" />
+      </Principal>
+      <Dependent Role="webLinks">
+        <PropertyRef Name="typeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_webLinksToProjects_projects">
+    <End Role="projects" Type="Self.projects" Multiplicity="1" />
+    <End Role="webLinksToProjects" Type="Self.webLinksToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="projects">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="webLinksToProjects">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_webLinksToProjects_webLinks">
+    <End Role="webLinks" Type="Self.webLinks" Multiplicity="1" />
+    <End Role="webLinksToProjects" Type="Self.webLinksToProjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webLinks">
+        <PropertyRef Name="weblinkID" />
+      </Principal>
+      <Dependent Role="webLinksToProjects">
+        <PropertyRef Name="webLinkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TTBModelStoreContainer">
+    <EntitySet Name="authors" EntityType="Self.authors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="collections" EntityType="Self.collections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="companies" EntityType="Self.companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="companyTypes" EntityType="Self.companyTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dataSets" EntityType="Self.dataSets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="episodes" EntityType="Self.episodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="events" EntityType="Self.events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="eventTypes" EntityType="Self.eventTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="genres" EntityType="Self.genres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobListings" EntityType="Self.jobListings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="people" EntityType="Self.people" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="peopleRoles" EntityType="Self.peopleRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="peopleToCompanies" EntityType="Self.peopleToCompanies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="projects" EntityType="Self.projects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="quantitativeDataPoint" EntityType="Self.quantitativeDataPoint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ratings" EntityType="Self.ratings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="relationships" EntityType="Self.relationships" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="socialSearches" EntityType="Self.socialSearches" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="statuses" EntityType="Self.statuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tags" EntityType="Self.tags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webLinks" EntityType="Self.webLinks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="weblinksTypes" EntityType="Self.weblinksTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="companyTypesToCompanies" EntityType="Self.companyTypesToCompanies" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [companyTypesToCompanies].[companyTypeID] AS [companyTypeID], 
+    [companyTypesToCompanies].[companyID] AS [companyID]
+    FROM [dbo].[companyTypesToCompanies] AS [companyTypesToCompanies]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="episodesToSeasons" EntityType="Self.episodesToSeasons" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [episodesToSeasons].[seasonID] AS [seasonID], 
+    [episodesToSeasons].[episodeID] AS [episodeID]
+    FROM [dbo].[episodesToSeasons] AS [episodesToSeasons]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="eventsToProjects" EntityType="Self.eventsToProjects" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [eventsToProjects].[eventID] AS [eventID], 
+    [eventsToProjects].[projectID] AS [projectID], 
+    [eventsToProjects].[listPriority] AS [listPriority]
+    FROM [dbo].[eventsToProjects] AS [eventsToProjects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="genresToProjects" EntityType="Self.genresToProjects" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [genresToProjects].[genreID] AS [genreID], 
+    [genresToProjects].[projectID] AS [projectID], 
+    [genresToProjects].[dateAdded] AS [dateAdded], 
+    [genresToProjects].[subGenre] AS [subGenre], 
+    [genresToProjects].[listPriority] AS [listPriority]
+    FROM [dbo].[genresToProjects] AS [genresToProjects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="itemsToCollections" EntityType="Self.itemsToCollections" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [itemsToCollections].[itemID] AS [itemID], 
+    [itemsToCollections].[collectionID] AS [collectionID]
+    FROM [dbo].[itemsToCollections] AS [itemsToCollections]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="peopleToProjects" EntityType="Self.peopleToProjects" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [peopleToProjects].[personID] AS [personID], 
+    [peopleToProjects].[projectID] AS [projectID], 
+    [peopleToProjects].[roleID] AS [roleID], 
+    [peopleToProjects].[contractNote] AS [contractNote]
+    FROM [dbo].[peopleToProjects] AS [peopleToProjects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="quantitativeDataToPeople" EntityType="Self.quantitativeDataToPeople" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [quantitativeDataToPeople].[quantitativeDataPointID] AS [quantitativeDataPointID], 
+    [quantitativeDataToPeople].[personID] AS [personID], 
+    [quantitativeDataToPeople].[listPriority] AS [listPriority], 
+    [quantitativeDataToPeople].[hidden] AS [hidden]
+    FROM [dbo].[quantitativeDataToPeople] AS [quantitativeDataToPeople]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="quantitativeDataToProjects" EntityType="Self.quantitativeDataToProjects" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [quantitativeDataToProjects].[quantitativeDataPointID] AS [quantitativeDataPointID], 
+    [quantitativeDataToProjects].[projectID] AS [projectID], 
+    [quantitativeDataToProjects].[listPriority] AS [listPriority], 
+    [quantitativeDataToProjects].[hidden] AS [hidden]
+    FROM [dbo].[quantitativeDataToProjects] AS [quantitativeDataToProjects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="socialSearchesToProjects" EntityType="Self.socialSearchesToProjects" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [socialSearchesToProjects].[socialSearchID] AS [socialSearchID], 
+    [socialSearchesToProjects].[projectID] AS [projectID]
+    FROM [dbo].[socialSearchesToProjects] AS [socialSearchesToProjects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="socialSearchToPeople" EntityType="Self.socialSearchToPeople" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [socialSearchToPeople].[socialSearchID] AS [socialSearchID], 
+    [socialSearchToPeople].[personID] AS [personID]
+    FROM [dbo].[socialSearchToPeople] AS [socialSearchToPeople]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tagsToProjects" EntityType="Self.tagsToProjects" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tagsToProjects].[tagID] AS [tagID], 
+    [tagsToProjects].[projectID] AS [projectID], 
+    [tagsToProjects].[dateAdded] AS [dateAdded]
+    FROM [dbo].[tagsToProjects] AS [tagsToProjects]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="webLinksToProjects" EntityType="Self.webLinksToProjects" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [webLinksToProjects].[webLinkID] AS [webLinkID], 
+    [webLinksToProjects].[projectID] AS [projectID]
+    FROM [dbo].[webLinksToProjects] AS [webLinksToProjects]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_companyTypesToCompanies_companies" Association="Self.FK_companyTypesToCompanies_companies">
+      <End Role="companies" EntitySet="companies" />
+      <End Role="companyTypesToCompanies" EntitySet="companyTypesToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_companyTypesToCompanies_companyTypes" Association="Self.FK_companyTypesToCompanies_companyTypes">
+      <End Role="companyTypes" EntitySet="companyTypes" />
+      <End Role="companyTypesToCompanies" EntitySet="companyTypesToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_episodesToSeasons_episodes" Association="Self.FK_episodesToSeasons_episodes">
+      <End Role="episodes" EntitySet="episodes" />
+      <End Role="episodesToSeasons" EntitySet="episodesToSeasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_eventTypes" Association="Self.FK_events_eventTypes">
+      <End Role="eventTypes" EntitySet="eventTypes" />
+      <End Role="events" EntitySet="events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_eventsToProjects_events" Association="Self.FK_eventsToProjects_events">
+      <End Role="events" EntitySet="events" />
+      <End Role="eventsToProjects" EntitySet="eventsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_eventsToProjects_projects" Association="Self.FK_eventsToProjects_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="eventsToProjects" EntitySet="eventsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_genresToProjects_genres" Association="Self.FK_genresToProjects_genres">
+      <End Role="genres" EntitySet="genres" />
+      <End Role="genresToProjects" EntitySet="genresToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_genresToProjects_projects" Association="Self.FK_genresToProjects_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="genresToProjects" EntitySet="genresToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_items_projects" Association="Self.FK_items_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="items" EntitySet="items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_itemsToCollections_collections" Association="Self.FK_itemsToCollections_collections">
+      <End Role="collections" EntitySet="collections" />
+      <End Role="itemsToCollections" EntitySet="itemsToCollections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_itemsToCollections_items" Association="Self.FK_itemsToCollections_items">
+      <End Role="items" EntitySet="items" />
+      <End Role="itemsToCollections" EntitySet="itemsToCollections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jobListings_orders" Association="Self.FK_jobListings_orders">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="jobListings" EntitySet="jobListings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_products" Association="Self.FK_orders_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToCompanies_companies" Association="Self.FK_peopleToCompanies_companies">
+      <End Role="companies" EntitySet="companies" />
+      <End Role="peopleToCompanies" EntitySet="peopleToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToCompanies_people" Association="Self.FK_peopleToCompanies_people">
+      <End Role="people" EntitySet="people" />
+      <End Role="peopleToCompanies" EntitySet="peopleToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToCompanies_peopleRoles" Association="Self.FK_peopleToCompanies_peopleRoles">
+      <End Role="peopleRoles" EntitySet="peopleRoles" />
+      <End Role="peopleToCompanies" EntitySet="peopleToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToProjects_people" Association="Self.FK_peopleToProjects_people">
+      <End Role="people" EntitySet="people" />
+      <End Role="peopleToProjects" EntitySet="peopleToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToProjects_peopleRoles" Association="Self.FK_peopleToProjects_peopleRoles">
+      <End Role="peopleRoles" EntitySet="peopleRoles" />
+      <End Role="peopleToProjects" EntitySet="peopleToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToProjects_projects" Association="Self.FK_peopleToProjects_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="peopleToProjects" EntitySet="peopleToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_ratings" Association="Self.FK_projects_ratings">
+      <End Role="ratings" EntitySet="ratings" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_statuses" Association="Self.FK_projects_statuses">
+      <End Role="statuses" EntitySet="statuses" />
+      <End Role="projects" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataPoint_dataSets" Association="Self.FK_quantitativeDataPoint_dataSets">
+      <End Role="dataSets" EntitySet="dataSets" />
+      <End Role="quantitativeDataPoint" EntitySet="quantitativeDataPoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataToPeople_people" Association="Self.FK_quantitativeDataToPeople_people">
+      <End Role="people" EntitySet="people" />
+      <End Role="quantitativeDataToPeople" EntitySet="quantitativeDataToPeople" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataToPeople_quantitativeDataPoint" Association="Self.FK_quantitativeDataToPeople_quantitativeDataPoint">
+      <End Role="quantitativeDataPoint" EntitySet="quantitativeDataPoint" />
+      <End Role="quantitativeDataToPeople" EntitySet="quantitativeDataToPeople" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataToProjects_quantitativeDataPoint" Association="Self.FK_quantitativeDataToProjects_quantitativeDataPoint">
+      <End Role="quantitativeDataPoint" EntitySet="quantitativeDataPoint" />
+      <End Role="quantitativeDataToProjects" EntitySet="quantitativeDataToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_socialSearchesToProjects_projects" Association="Self.FK_socialSearchesToProjects_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="socialSearchesToProjects" EntitySet="socialSearchesToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_socialSearchesToProjects_socialSearches" Association="Self.FK_socialSearchesToProjects_socialSearches">
+      <End Role="socialSearches" EntitySet="socialSearches" />
+      <End Role="socialSearchesToProjects" EntitySet="socialSearchesToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_socialSearchToPeople_people" Association="Self.FK_socialSearchToPeople_people">
+      <End Role="people" EntitySet="people" />
+      <End Role="socialSearchToPeople" EntitySet="socialSearchToPeople" />
+    </AssociationSet>
+    <AssociationSet Name="FK_socialSearchToPeople_socialSearches" Association="Self.FK_socialSearchToPeople_socialSearches">
+      <End Role="socialSearches" EntitySet="socialSearches" />
+      <End Role="socialSearchToPeople" EntitySet="socialSearchToPeople" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tagsToProjects_projects" Association="Self.FK_tagsToProjects_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="tagsToProjects" EntitySet="tagsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tagsToProjects_tags" Association="Self.FK_tagsToProjects_tags">
+      <End Role="tags" EntitySet="tags" />
+      <End Role="tagsToProjects" EntitySet="tagsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_webLinks_weblinksTypes" Association="Self.FK_webLinks_weblinksTypes">
+      <End Role="weblinksTypes" EntitySet="weblinksTypes" />
+      <End Role="webLinks" EntitySet="webLinks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_webLinksToProjects_projects" Association="Self.FK_webLinksToProjects_projects">
+      <End Role="projects" EntitySet="projects" />
+      <End Role="webLinksToProjects" EntitySet="webLinksToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_webLinksToProjects_webLinks" Association="Self.FK_webLinksToProjects_webLinks">
+      <End Role="webLinks" EntitySet="webLinks" />
+      <End Role="webLinksToProjects" EntitySet="webLinksToProjects" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

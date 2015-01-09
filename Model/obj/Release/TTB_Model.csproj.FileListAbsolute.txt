@@ -1,0 +1,10 @@
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Release\TTB_Model.dll.config
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Release\TTB_Model.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Release\TTB_Model.pdb
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Release\EntityFramework.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Release\EntityFramework.xml
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Desktop\TTB\TTB_Model\obj\Release\TTB_Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\TTB\TTB_Model\obj\Release\TTB_Model.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\obj\Release\TTB_Model.pdb

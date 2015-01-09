@@ -1,0 +1,836 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TTBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="collection">
+    <Key>
+      <PropertyRef Name="collectionID" />
+    </Key>
+    <Property Name="collectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="collectionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="items" Relationship="Self.itemsToCollections" FromRole="collections" ToRole="items" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="companyWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="peopleToCompany" Relationship="Self.FK_peopleToCompanies_companies" FromRole="companies" ToRole="peopleToCompanies" />
+    <NavigationProperty Name="companyTypes" Relationship="Self.companyTypesToCompanies" FromRole="companies" ToRole="companyTypes" />
+  </EntityType>
+  <EntityType Name="companyType">
+    <Key>
+      <PropertyRef Name="companyTypeID" />
+    </Key>
+    <Property Name="companyTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="companies" Relationship="Self.companyTypesToCompanies" FromRole="companyTypes" ToRole="companies" />
+  </EntityType>
+  <EntityType Name="dataSet">
+    <Key>
+      <PropertyRef Name="dataSetID" />
+    </Key>
+    <Property Name="dataSetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dataSetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="specificProjectID" Type="Int32" />
+    <Property Name="yAxis" Type="DateTime" Precision="3" />
+    <Property Name="xAxis" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="quantitativeDataPoints" Relationship="Self.FK_quantitativeDataPoint_dataSets" FromRole="dataSets" ToRole="quantitativeDataPoint" />
+  </EntityType>
+  <EntityType Name="episode">
+    <Key>
+      <PropertyRef Name="episodeID" />
+    </Key>
+    <Property Name="episodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="episodeName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="episodesToSeasons" Relationship="Self.FK_episodesToSeasons_episodes" FromRole="episodes" ToRole="episodesToSeasons" />
+  </EntityType>
+  <EntityType Name="projectEvent">
+    <Key>
+      <PropertyRef Name="eventID" />
+    </Key>
+    <Property Name="eventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="eventDate" Type="DateTime" Precision="0" />
+    <Property Name="eventName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="typeID" Type="Int32" />
+    <NavigationProperty Name="eventType" Relationship="Self.FK_events_eventTypes" FromRole="events" ToRole="eventTypes" />
+    <NavigationProperty Name="eventsToProjects" Relationship="Self.FK_eventsToProjects_events" FromRole="events" ToRole="eventsToProjects" />
+  </EntityType>
+  <EntityType Name="eventType">
+    <Key>
+      <PropertyRef Name="eventTypeID" />
+    </Key>
+    <Property Name="eventTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="eventTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="events" Relationship="Self.FK_events_eventTypes" FromRole="eventTypes" ToRole="events" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="genreID" />
+    </Key>
+    <Property Name="genreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="genreName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="genresToProjects" Relationship="Self.FK_genresToProjects_genres" FromRole="genres" ToRole="genresToProjects" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="ItemsId" />
+    </Key>
+    <Property Name="ItemsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="authorID" Type="Int32" />
+    <Property Name="slug" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="itemType" Type="Int32" />
+    <Property Name="publishDate" Type="DateTime" Precision="0" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="thumbnail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="collections" Relationship="Self.itemsToCollections" FromRole="items" ToRole="collections" />
+    <Property Name="projectID" Type="Int32" />
+    <NavigationProperty Name="project" Relationship="TTBModel.FK_items_projects" FromRole="item" ToRole="project" />
+  </EntityType>
+  <EntityType Name="jobListing">
+    <Key>
+      <PropertyRef Name="jobListingID" />
+    </Key>
+    <Property Name="jobListingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderID" Type="Int32" Nullable="false" />
+    <Property Name="realEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="anonEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="order" Relationship="Self.FK_jobListings_orders" FromRole="jobListings" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userID" Type="Int32" Nullable="false" />
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="orderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="startDate" Type="DateTime" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Precision="3" />
+    <Property Name="autoRenew" Type="Boolean" />
+    <NavigationProperty Name="jobListings" Relationship="Self.FK_jobListings_orders" FromRole="orders" ToRole="jobListings" />
+    <NavigationProperty Name="product" Relationship="Self.FK_orders_products" FromRole="orders" ToRole="products" />
+  </EntityType>
+  <EntityType Name="person">
+    <Key>
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="personID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="primaryRoleID" Type="Int32" />
+    <Property Name="archivalTBLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="birthdate" Type="DateTime" Precision="0" />
+    <Property Name="birthplace" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="networth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="personalNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="internalNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="awardNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="peopleToCompany" Relationship="Self.FK_peopleToCompanies_people" FromRole="people" ToRole="peopleToCompanies" />
+    <NavigationProperty Name="peopleToProjects" Relationship="Self.FK_peopleToProjects_people" FromRole="people" ToRole="peopleToProjects" />
+    <NavigationProperty Name="quantitativeDataToPeoples" Relationship="Self.FK_quantitativeDataToPeople_people" FromRole="people" ToRole="quantitativeDataToPeople" />
+    <NavigationProperty Name="socialSearches" Relationship="Self.socialSearchToPeople" FromRole="people" ToRole="socialSearches" />
+  </EntityType>
+  <EntityType Name="peopleRole">
+    <Key>
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="roleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roleTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="peopleToCompanies" Relationship="Self.FK_peopleToCompanies_peopleRoles" FromRole="peopleRoles" ToRole="peopleToCompanies" />
+    <NavigationProperty Name="peopleToProjects" Relationship="Self.FK_peopleToProjects_peopleRoles" FromRole="peopleRoles" ToRole="peopleToProjects" />
+  </EntityType>
+  <EntityType Name="peopleToCompany">
+    <Key>
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="personID" Type="Int32" Nullable="false" />
+    <Property Name="companyID" Type="Int32" />
+    <Property Name="roleID" Type="Int32" />
+    <Property Name="contractNote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="startDate" Type="DateTime" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Precision="0" />
+    <Property Name="current" Type="Boolean" />
+    <NavigationProperty Name="company" Relationship="Self.FK_peopleToCompanies_companies" FromRole="peopleToCompanies" ToRole="companies" />
+    <NavigationProperty Name="person" Relationship="Self.FK_peopleToCompanies_people" FromRole="peopleToCompanies" ToRole="people" />
+    <NavigationProperty Name="peopleRole" Relationship="Self.FK_peopleToCompanies_peopleRoles" FromRole="peopleToCompanies" ToRole="peopleRoles" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="Int32" />
+    <Property Name="accessLevel" Type="Int32" />
+    <NavigationProperty Name="orders" Relationship="Self.FK_orders_products" FromRole="products" ToRole="orders" />
+  </EntityType>
+  <EntityType Name="quantitativeDataPoint">
+    <Key>
+      <PropertyRef Name="quantitativeDataPointID" />
+    </Key>
+    <Property Name="quantitativeDataPointID" Type="Int32" Nullable="false" />
+    <Property Name="dataSetID" Type="Int32" />
+    <Property Name="dateCreated" Type="DateTime" Precision="3" />
+    <Property Name="dateUpdated" Type="DateTime" Precision="3" />
+    <Property Name="customDataLabel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dataAnnotation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="accordingTo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="dataSet" Relationship="Self.FK_quantitativeDataPoint_dataSets" FromRole="quantitativeDataPoint" ToRole="dataSets" />
+    <NavigationProperty Name="quantitativeDataToPeoples" Relationship="Self.FK_quantitativeDataToPeople_quantitativeDataPoint" FromRole="quantitativeDataPoint" ToRole="quantitativeDataToPeople" />
+    <NavigationProperty Name="quantitativeDataToProjects" Relationship="Self.FK_quantitativeDataToProjects_quantitativeDataPoint" FromRole="quantitativeDataPoint" ToRole="quantitativeDataToProjects" />
+  </EntityType>
+  <EntityType Name="rating">
+    <Key>
+      <PropertyRef Name="ratingID" />
+    </Key>
+    <Property Name="ratingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ratingAgency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ratingName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="projects" Relationship="TTBModel.FK_projects_ratings" FromRole="rating" ToRole="project" />
+  </EntityType>
+  <EntityType Name="relationship">
+    <Key>
+      <PropertyRef Name="relationshipID" />
+    </Key>
+    <Property Name="relationshipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="relationshipName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="socialSearch">
+    <Key>
+      <PropertyRef Name="socialSearchID" />
+    </Key>
+    <Property Name="socialSearchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dataSetID" Type="Int32" />
+    <Property Name="type" Type="Int32" />
+    <Property Name="pageID" Type="Int32" />
+    <Property Name="keywords" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="people" Relationship="Self.socialSearchToPeople" FromRole="socialSearches" ToRole="people" />
+    <NavigationProperty Name="projects" Relationship="TTBModel.socialSearchesToProjects" FromRole="socialSearch" ToRole="project" />
+  </EntityType>
+  <EntityType Name="status">
+    <Key>
+      <PropertyRef Name="statusID" />
+    </Key>
+    <Property Name="statusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="statusName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="projects" Relationship="TTBModel.FK_projects_statuses" FromRole="status" ToRole="project" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tag">
+    <Key>
+      <PropertyRef Name="tagID" />
+    </Key>
+    <Property Name="tagID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tagsToProjects" Relationship="Self.FK_tagsToProjects_tags" FromRole="tags" ToRole="tagsToProjects" />
+  </EntityType>
+  <EntityType Name="webLink">
+    <Key>
+      <PropertyRef Name="weblinkID" />
+    </Key>
+    <Property Name="weblinkID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="listPriority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="typeID" Type="Int32" />
+    <NavigationProperty Name="weblinksType" Relationship="Self.FK_webLinks_weblinksTypes" FromRole="webLinks" ToRole="weblinksTypes" />
+    <NavigationProperty Name="projects" Relationship="TTBModel.webLinksToProjects" FromRole="webLink" ToRole="project" />
+  </EntityType>
+  <EntityType Name="weblinksType">
+    <Key>
+      <PropertyRef Name="typeID" />
+    </Key>
+    <Property Name="typeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="icon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="webLinks" Relationship="Self.FK_webLinks_weblinksTypes" FromRole="weblinksTypes" ToRole="webLinks" />
+  </EntityType>
+  <EntityType Name="episodesToSeason">
+    <Key>
+      <PropertyRef Name="seasonID" />
+      <PropertyRef Name="episodeID" />
+    </Key>
+    <Property Name="seasonID" Type="Int32" Nullable="false" />
+    <Property Name="episodeID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="episode" Relationship="Self.FK_episodesToSeasons_episodes" FromRole="episodesToSeasons" ToRole="episodes" />
+  </EntityType>
+  <EntityType Name="eventsToProject">
+    <Key>
+      <PropertyRef Name="eventID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="eventID" Type="Int32" Nullable="false" />
+    <Property Name="projectID" Type="Int32" Nullable="false" />
+    <Property Name="listPriority" Type="Int32" />
+    <NavigationProperty Name="event" Relationship="Self.FK_eventsToProjects_events" FromRole="eventsToProjects" ToRole="events" />
+    <NavigationProperty Name="project" Relationship="TTBModel.FK_eventsToProjects_projects" FromRole="eventsToProject" ToRole="project" />
+  </EntityType>
+  <EntityType Name="genresToProject">
+    <Key>
+      <PropertyRef Name="genreID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="genreID" Type="Int32" Nullable="false" />
+    <Property Name="projectID" Type="Int32" Nullable="false" />
+    <Property Name="dateAdded" Type="DateTime" Precision="0" />
+    <Property Name="subGenre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="listPriority" Type="Int32" />
+    <NavigationProperty Name="genre" Relationship="Self.FK_genresToProjects_genres" FromRole="genresToProjects" ToRole="genres" />
+    <NavigationProperty Name="project" Relationship="TTBModel.FK_genresToProjects_projects" FromRole="genresToProject" ToRole="project" />
+  </EntityType>
+  <EntityType Name="peopleToProject">
+    <Key>
+      <PropertyRef Name="personID" />
+      <PropertyRef Name="projectID" />
+      <PropertyRef Name="roleID" />
+    </Key>
+    <Property Name="personID" Type="Int32" Nullable="false" />
+    <Property Name="projectID" Type="Int32" Nullable="false" />
+    <Property Name="roleID" Type="Int32" Nullable="false" />
+    <Property Name="contractNote" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="person" Relationship="Self.FK_peopleToProjects_people" FromRole="peopleToProjects" ToRole="people" />
+    <NavigationProperty Name="peopleRole" Relationship="Self.FK_peopleToProjects_peopleRoles" FromRole="peopleToProjects" ToRole="peopleRoles" />
+    <NavigationProperty Name="project" Relationship="TTBModel.FK_peopleToProjects_projects" FromRole="peopleToProject" ToRole="project" />
+  </EntityType>
+  <EntityType Name="quantitativeDataToPeople">
+    <Key>
+      <PropertyRef Name="quantitativeDataPointID" />
+      <PropertyRef Name="personID" />
+    </Key>
+    <Property Name="quantitativeDataPointID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="personID" Type="Int32" Nullable="false" />
+    <Property Name="listPriority" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hidden" Type="Boolean" />
+    <NavigationProperty Name="person" Relationship="Self.FK_quantitativeDataToPeople_people" FromRole="quantitativeDataToPeople" ToRole="people" />
+    <NavigationProperty Name="quantitativeDataPoint" Relationship="Self.FK_quantitativeDataToPeople_quantitativeDataPoint" FromRole="quantitativeDataToPeople" ToRole="quantitativeDataPoint" />
+  </EntityType>
+  <EntityType Name="quantitativeDataToProject">
+    <Key>
+      <PropertyRef Name="quantitativeDataPointID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="quantitativeDataPointID" Type="Int32" Nullable="false" />
+    <Property Name="projectID" Type="Int32" Nullable="false" />
+    <Property Name="listPriority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="hidden" Type="Boolean" />
+    <NavigationProperty Name="quantitativeDataPoint" Relationship="Self.FK_quantitativeDataToProjects_quantitativeDataPoint" FromRole="quantitativeDataToProjects" ToRole="quantitativeDataPoint" />
+  </EntityType>
+  <EntityType Name="tagsToProject">
+    <Key>
+      <PropertyRef Name="tagID" />
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="tagID" Type="Int32" Nullable="false" />
+    <Property Name="projectID" Type="Int32" Nullable="false" />
+    <Property Name="dateAdded" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tag" Relationship="Self.FK_tagsToProjects_tags" FromRole="tagsToProjects" ToRole="tags" />
+    <NavigationProperty Name="project" Relationship="TTBModel.FK_tagsToProjects_projects" FromRole="tagsToProject" ToRole="project" />
+  </EntityType>
+  <Association Name="FK_peopleToCompanies_companies">
+    <End Role="companies" Type="Self.company" Multiplicity="1" />
+    <End Role="peopleToCompanies" Type="Self.peopleToCompany" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="companies">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="peopleToCompanies">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataPoint_dataSets">
+    <End Role="dataSets" Type="Self.dataSet" Multiplicity="0..1" />
+    <End Role="quantitativeDataPoint" Type="Self.quantitativeDataPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dataSets">
+        <PropertyRef Name="dataSetID" />
+      </Principal>
+      <Dependent Role="quantitativeDataPoint">
+        <PropertyRef Name="dataSetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_episodesToSeasons_episodes">
+    <End Role="episodes" Type="Self.episode" Multiplicity="1" />
+    <End Role="episodesToSeasons" Type="Self.episodesToSeason" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="episodes">
+        <PropertyRef Name="episodeID" />
+      </Principal>
+      <Dependent Role="episodesToSeasons">
+        <PropertyRef Name="episodeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_events_eventTypes">
+    <End Role="eventTypes" Type="Self.eventType" Multiplicity="0..1" />
+    <End Role="events" Type="TTBModel.projectEvent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="eventTypes">
+        <PropertyRef Name="eventTypeID" />
+      </Principal>
+      <Dependent Role="events">
+        <PropertyRef Name="typeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_eventsToProjects_events">
+    <End Role="events" Type="TTBModel.projectEvent" Multiplicity="1" />
+    <End Role="eventsToProjects" Type="Self.eventsToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="events">
+        <PropertyRef Name="eventID" />
+      </Principal>
+      <Dependent Role="eventsToProjects">
+        <PropertyRef Name="eventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_genresToProjects_genres">
+    <End Role="genres" Type="Self.genre" Multiplicity="1" />
+    <End Role="genresToProjects" Type="Self.genresToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genres">
+        <PropertyRef Name="genreID" />
+      </Principal>
+      <Dependent Role="genresToProjects">
+        <PropertyRef Name="genreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_jobListings_orders">
+    <End Role="orders" Type="Self.order" Multiplicity="1" />
+    <End Role="jobListings" Type="Self.jobListing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="jobListings">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orders_products">
+    <End Role="products" Type="Self.product" Multiplicity="1" />
+    <End Role="orders" Type="Self.order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToCompanies_people">
+    <End Role="people" Type="Self.person" Multiplicity="1" />
+    <End Role="peopleToCompanies" Type="Self.peopleToCompany" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="peopleToCompanies">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToProjects_people">
+    <End Role="people" Type="Self.person" Multiplicity="1" />
+    <End Role="peopleToProjects" Type="Self.peopleToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="peopleToProjects">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataToPeople_people">
+    <End Role="people" Type="Self.person" Multiplicity="1" />
+    <End Role="quantitativeDataToPeople" Type="Self.quantitativeDataToPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="people">
+        <PropertyRef Name="personID" />
+      </Principal>
+      <Dependent Role="quantitativeDataToPeople">
+        <PropertyRef Name="personID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToCompanies_peopleRoles">
+    <End Role="peopleRoles" Type="Self.peopleRole" Multiplicity="0..1" />
+    <End Role="peopleToCompanies" Type="Self.peopleToCompany" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="peopleRoles">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="peopleToCompanies">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToProjects_peopleRoles">
+    <End Role="peopleRoles" Type="Self.peopleRole" Multiplicity="1" />
+    <End Role="peopleToProjects" Type="Self.peopleToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="peopleRoles">
+        <PropertyRef Name="roleID" />
+      </Principal>
+      <Dependent Role="peopleToProjects">
+        <PropertyRef Name="roleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataToPeople_quantitativeDataPoint">
+    <End Role="quantitativeDataPoint" Type="Self.quantitativeDataPoint" Multiplicity="1" />
+    <End Role="quantitativeDataToPeople" Type="Self.quantitativeDataToPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="quantitativeDataPoint">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Principal>
+      <Dependent Role="quantitativeDataToPeople">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_quantitativeDataToProjects_quantitativeDataPoint">
+    <End Role="quantitativeDataPoint" Type="Self.quantitativeDataPoint" Multiplicity="1" />
+    <End Role="quantitativeDataToProjects" Type="Self.quantitativeDataToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="quantitativeDataPoint">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Principal>
+      <Dependent Role="quantitativeDataToProjects">
+        <PropertyRef Name="quantitativeDataPointID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tagsToProjects_tags">
+    <End Role="tags" Type="Self.tag" Multiplicity="1" />
+    <End Role="tagsToProjects" Type="Self.tagsToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tags">
+        <PropertyRef Name="tagID" />
+      </Principal>
+      <Dependent Role="tagsToProjects">
+        <PropertyRef Name="tagID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_webLinks_weblinksTypes">
+    <End Role="weblinksTypes" Type="Self.weblinksType" Multiplicity="0..1" />
+    <End Role="webLinks" Type="Self.webLink" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="weblinksTypes">
+        <PropertyRef Name="typeID" />
+      </Principal>
+      <Dependent Role="webLinks">
+        <PropertyRef Name="typeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="companyTypesToCompanies">
+    <End Role="companies" Type="Self.company" Multiplicity="*" />
+    <End Role="companyTypes" Type="Self.companyType" Multiplicity="*" />
+  </Association>
+  <Association Name="itemsToCollections">
+    <End Role="collections" Type="Self.collection" Multiplicity="*" />
+    <End Role="items" Type="Self.item" Multiplicity="*" />
+  </Association>
+  <Association Name="socialSearchToPeople">
+    <End Role="people" Type="Self.person" Multiplicity="*" />
+    <End Role="socialSearches" Type="Self.socialSearch" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="TTBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="collections" EntityType="Self.collection" />
+    <EntitySet Name="companies" EntityType="Self.company" />
+    <EntitySet Name="companyTypes" EntityType="Self.companyType" />
+    <EntitySet Name="dataSets" EntityType="Self.dataSet" />
+    <EntitySet Name="episodes" EntityType="Self.episode" />
+    <EntitySet Name="projectEvents" EntityType="TTBModel.projectEvent" />
+    <EntitySet Name="eventTypes" EntityType="Self.eventType" />
+    <EntitySet Name="genres" EntityType="Self.genre" />
+    <EntitySet Name="items" EntityType="Self.item" />
+    <EntitySet Name="jobListings" EntityType="Self.jobListing" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="people" EntityType="Self.person" />
+    <EntitySet Name="peopleRoles" EntityType="Self.peopleRole" />
+    <EntitySet Name="peopleToCompanies" EntityType="Self.peopleToCompany" />
+    <EntitySet Name="products" EntityType="Self.product" />
+    <EntitySet Name="quantitativeDataPoints" EntityType="Self.quantitativeDataPoint" />
+    <EntitySet Name="ratings" EntityType="Self.rating" />
+    <EntitySet Name="relationships" EntityType="Self.relationship" />
+    <EntitySet Name="socialSearches" EntityType="Self.socialSearch" />
+    <EntitySet Name="statuses" EntityType="Self.status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tags" EntityType="Self.tag" />
+    <EntitySet Name="webLinks" EntityType="Self.webLink" />
+    <EntitySet Name="weblinksTypes" EntityType="Self.weblinksType" />
+    <EntitySet Name="episodesToSeasons" EntityType="Self.episodesToSeason" />
+    <EntitySet Name="eventsToProjects" EntityType="Self.eventsToProject" />
+    <EntitySet Name="genresToProjects" EntityType="Self.genresToProject" />
+    <EntitySet Name="peopleToProjects" EntityType="Self.peopleToProject" />
+    <EntitySet Name="quantitativeDataToPeoples" EntityType="Self.quantitativeDataToPeople" />
+    <EntitySet Name="quantitativeDataToProjects" EntityType="Self.quantitativeDataToProject" />
+    <EntitySet Name="tagsToProjects" EntityType="Self.tagsToProject" />
+    <AssociationSet Name="FK_peopleToCompanies_companies" Association="Self.FK_peopleToCompanies_companies">
+      <End Role="companies" EntitySet="companies" />
+      <End Role="peopleToCompanies" EntitySet="peopleToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataPoint_dataSets" Association="Self.FK_quantitativeDataPoint_dataSets">
+      <End Role="dataSets" EntitySet="dataSets" />
+      <End Role="quantitativeDataPoint" EntitySet="quantitativeDataPoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_episodesToSeasons_episodes" Association="Self.FK_episodesToSeasons_episodes">
+      <End Role="episodes" EntitySet="episodes" />
+      <End Role="episodesToSeasons" EntitySet="episodesToSeasons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_events_eventTypes" Association="Self.FK_events_eventTypes">
+      <End Role="eventTypes" EntitySet="eventTypes" />
+      <End Role="events" EntitySet="projectEvents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_eventsToProjects_events" Association="Self.FK_eventsToProjects_events">
+      <End Role="events" EntitySet="projectEvents" />
+      <End Role="eventsToProjects" EntitySet="eventsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_genresToProjects_genres" Association="Self.FK_genresToProjects_genres">
+      <End Role="genres" EntitySet="genres" />
+      <End Role="genresToProjects" EntitySet="genresToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_jobListings_orders" Association="Self.FK_jobListings_orders">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="jobListings" EntitySet="jobListings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orders_products" Association="Self.FK_orders_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToCompanies_people" Association="Self.FK_peopleToCompanies_people">
+      <End Role="people" EntitySet="people" />
+      <End Role="peopleToCompanies" EntitySet="peopleToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToProjects_people" Association="Self.FK_peopleToProjects_people">
+      <End Role="people" EntitySet="people" />
+      <End Role="peopleToProjects" EntitySet="peopleToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataToPeople_people" Association="Self.FK_quantitativeDataToPeople_people">
+      <End Role="people" EntitySet="people" />
+      <End Role="quantitativeDataToPeople" EntitySet="quantitativeDataToPeoples" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToCompanies_peopleRoles" Association="Self.FK_peopleToCompanies_peopleRoles">
+      <End Role="peopleRoles" EntitySet="peopleRoles" />
+      <End Role="peopleToCompanies" EntitySet="peopleToCompanies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToProjects_peopleRoles" Association="Self.FK_peopleToProjects_peopleRoles">
+      <End Role="peopleRoles" EntitySet="peopleRoles" />
+      <End Role="peopleToProjects" EntitySet="peopleToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataToPeople_quantitativeDataPoint" Association="Self.FK_quantitativeDataToPeople_quantitativeDataPoint">
+      <End Role="quantitativeDataPoint" EntitySet="quantitativeDataPoints" />
+      <End Role="quantitativeDataToPeople" EntitySet="quantitativeDataToPeoples" />
+    </AssociationSet>
+    <AssociationSet Name="FK_quantitativeDataToProjects_quantitativeDataPoint" Association="Self.FK_quantitativeDataToProjects_quantitativeDataPoint">
+      <End Role="quantitativeDataPoint" EntitySet="quantitativeDataPoints" />
+      <End Role="quantitativeDataToProjects" EntitySet="quantitativeDataToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tagsToProjects_tags" Association="Self.FK_tagsToProjects_tags">
+      <End Role="tags" EntitySet="tags" />
+      <End Role="tagsToProjects" EntitySet="tagsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_webLinks_weblinksTypes" Association="Self.FK_webLinks_weblinksTypes">
+      <End Role="weblinksTypes" EntitySet="weblinksTypes" />
+      <End Role="webLinks" EntitySet="webLinks" />
+    </AssociationSet>
+    <AssociationSet Name="companyTypesToCompanies" Association="Self.companyTypesToCompanies">
+      <End Role="companies" EntitySet="companies" />
+      <End Role="companyTypes" EntitySet="companyTypes" />
+    </AssociationSet>
+    <AssociationSet Name="itemsToCollections" Association="Self.itemsToCollections">
+      <End Role="collections" EntitySet="collections" />
+      <End Role="items" EntitySet="items" />
+    </AssociationSet>
+    <AssociationSet Name="socialSearchToPeople" Association="Self.socialSearchToPeople">
+      <End Role="people" EntitySet="people" />
+      <End Role="socialSearches" EntitySet="socialSearches" />
+    </AssociationSet>
+    <EntitySet Name="authors" EntityType="TTBModel.author" />
+    <EntitySet Name="projects" EntityType="TTBModel.project" />
+    <AssociationSet Name="FK_items_projects" Association="TTBModel.FK_items_projects">
+      <End Role="project" EntitySet="projects" />
+      <End Role="item" EntitySet="items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_eventsToProjects_projects" Association="TTBModel.FK_eventsToProjects_projects">
+      <End Role="project" EntitySet="projects" />
+      <End Role="eventsToProject" EntitySet="eventsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_genresToProjects_projects" Association="TTBModel.FK_genresToProjects_projects">
+      <End Role="project" EntitySet="projects" />
+      <End Role="genresToProject" EntitySet="genresToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_peopleToProjects_projects" Association="TTBModel.FK_peopleToProjects_projects">
+      <End Role="project" EntitySet="projects" />
+      <End Role="peopleToProject" EntitySet="peopleToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_ratings" Association="TTBModel.FK_projects_ratings">
+      <End Role="rating" EntitySet="ratings" />
+      <End Role="project" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_projects_statuses" Association="TTBModel.FK_projects_statuses">
+      <End Role="status" EntitySet="statuses" />
+      <End Role="project" EntitySet="projects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tagsToProjects_projects" Association="TTBModel.FK_tagsToProjects_projects">
+      <End Role="project" EntitySet="projects" />
+      <End Role="tagsToProject" EntitySet="tagsToProjects" />
+    </AssociationSet>
+    <AssociationSet Name="socialSearchesToProjects" Association="TTBModel.socialSearchesToProjects">
+      <End Role="project" EntitySet="projects" />
+      <End Role="socialSearch" EntitySet="socialSearches" />
+    </AssociationSet>
+    <AssociationSet Name="webLinksToProjects" Association="TTBModel.webLinksToProjects">
+      <End Role="project" EntitySet="projects" />
+      <End Role="webLink" EntitySet="webLinks" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="author">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="project">
+    <Key>
+      <PropertyRef Name="projectID" />
+    </Key>
+    <Property Name="projectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="statusID" Type="Int32" />
+    <Property Name="ratingID" Type="Int32" />
+    <Property Name="recordCreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="recordUpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="runtime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="logLine" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="synopsis" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="rottenTomatoesID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="imdbID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="metaCriticID" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="productionNotes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="locationNotes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="distributionNotes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="awardNotes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="technicalNotes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="items" Relationship="TTBModel.FK_items_projects" FromRole="project" ToRole="item" />
+    <NavigationProperty Name="eventsToProjects" Relationship="TTBModel.FK_eventsToProjects_projects" FromRole="project" ToRole="eventsToProject" />
+    <NavigationProperty Name="genresToProjects" Relationship="TTBModel.FK_genresToProjects_projects" FromRole="project" ToRole="genresToProject" />
+    <NavigationProperty Name="peopleToProjects" Relationship="TTBModel.FK_peopleToProjects_projects" FromRole="project" ToRole="peopleToProject" />
+    <NavigationProperty Name="rating" Relationship="TTBModel.FK_projects_ratings" FromRole="project" ToRole="rating" />
+    <NavigationProperty Name="status" Relationship="TTBModel.FK_projects_statuses" FromRole="project" ToRole="status" />
+    <NavigationProperty Name="tagsToProjects" Relationship="TTBModel.FK_tagsToProjects_projects" FromRole="project" ToRole="tagsToProject" />
+    <NavigationProperty Name="socialSearches" Relationship="TTBModel.socialSearchesToProjects" FromRole="project" ToRole="socialSearch" />
+    <NavigationProperty Name="webLinks" Relationship="TTBModel.webLinksToProjects" FromRole="project" ToRole="webLink" />
+  </EntityType>
+  <Association Name="FK_items_projects">
+    <End Type="TTBModel.project" Role="project" Multiplicity="0..1" />
+    <End Type="TTBModel.item" Role="item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="item">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_eventsToProjects_projects">
+    <End Type="TTBModel.project" Role="project" Multiplicity="1" />
+    <End Type="TTBModel.eventsToProject" Role="eventsToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="eventsToProject">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_genresToProjects_projects">
+    <End Type="TTBModel.project" Role="project" Multiplicity="1" />
+    <End Type="TTBModel.genresToProject" Role="genresToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="genresToProject">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_peopleToProjects_projects">
+    <End Type="TTBModel.project" Role="project" Multiplicity="1" />
+    <End Type="TTBModel.peopleToProject" Role="peopleToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="peopleToProject">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_ratings">
+    <End Type="TTBModel.rating" Role="rating" Multiplicity="0..1" />
+    <End Type="TTBModel.project" Role="project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rating">
+        <PropertyRef Name="ratingID" />
+      </Principal>
+      <Dependent Role="project">
+        <PropertyRef Name="ratingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_projects_statuses">
+    <End Type="TTBModel.status" Role="status" Multiplicity="0..1" />
+    <End Type="TTBModel.project" Role="project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="status">
+        <PropertyRef Name="statusID" />
+      </Principal>
+      <Dependent Role="project">
+        <PropertyRef Name="statusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tagsToProjects_projects">
+    <End Type="TTBModel.project" Role="project" Multiplicity="1" />
+    <End Type="TTBModel.tagsToProject" Role="tagsToProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="project">
+        <PropertyRef Name="projectID" />
+      </Principal>
+      <Dependent Role="tagsToProject">
+        <PropertyRef Name="projectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="socialSearchesToProjects">
+    <End Type="TTBModel.project" Role="project" Multiplicity="*" />
+    <End Type="TTBModel.socialSearch" Role="socialSearch" Multiplicity="*" />
+  </Association>
+  <Association Name="webLinksToProjects">
+    <End Type="TTBModel.project" Role="project" Multiplicity="*" />
+    <End Type="TTBModel.webLink" Role="webLink" Multiplicity="*" />
+  </Association>
+</Schema>

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TTB_Model.status>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Statuses</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var status in Model)
+        {
+            <tr>
+                <td>@status.statusName</td>
+                <td>
+                    @Html.ActionLink("Edit", "AddEditStatus", new { id = @status.statusID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Add New Status", "AddEditStatus")
+
+</div>

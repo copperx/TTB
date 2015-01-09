@@ -1,0 +1,33 @@
+﻿@model TTB.ViewModels.EventViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Add/Edit Event</h2>
+
+@using (Html.BeginForm("AddEditEvent", "Admin"))
+{
+    <div class="container">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="name">Name</label>
+                @Html.TextBoxFor(m => m.ProjectEvent.eventName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ProjectEvent.eventName)
+            </div>
+            <div class="form-group">
+                <label for="name">Date</label>
+                @Html.TextBoxFor(m => m.ProjectEvent.eventDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ProjectEvent.eventDate)
+            </div>
+            <div class="form-group">
+                <label for="name">Event Type</label>
+                @Html.DropDownListFor(v => v.ProjectEvent.typeID, new SelectList(Model.eventTypes, "eventTypeID", "eventTypeName"), new { @class = "form-control dropdown" })
+            </div>
+            @Html.HiddenFor(m => m.ProjectEvent.eventID)
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-success btn-lg btnSaveEdit" value="Save" />
+        </div>
+    </div>
+}

@@ -1,0 +1,76 @@
+﻿@model TTB.ViewModels.ProjectViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Add/Edit Project</h2>
+
+@using (Html.BeginForm("AddEditProject", "Admin"))
+{
+    <div class="container">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="name">Name</label>
+                @Html.TextBoxFor(m => m.Project.projectName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Status</label>
+                @Html.DropDownListFor(v => v.Project.statusID, new SelectList(Model.Statuses, "statusID", "statusName"), new { @class = "form-control dropdown" })
+            </div>
+            <div class="form-group">
+                <label for="name">Rating</label>
+                @Html.DropDownListFor(v => v.Project.ratingID, new SelectList(Model.Ratings, "ratingID", "ratingName"), new { @class = "form-control dropdown" })
+            </div>
+            <div class="form-group">
+                <label for="name">Runtime</label>
+                @Html.TextBoxFor(m => m.Project.runtime, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Logline</label>
+                @Html.TextBoxFor(m => m.Project.logLine, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Synopsis</label>
+                @Html.TextAreaFor(m => m.Project.synopsis, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Rotten Tomatoes ID</label>
+                @Html.TextBoxFor(m => m.Project.rottenTomatoesID, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Imdb Id</label>
+                @Html.TextBoxFor(m => m.Project.imdbID, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">MetaCritic ID</label>
+                @Html.TextBoxFor(m => m.Project.metaCriticID, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Production Notes</label>
+                @Html.TextAreaFor(m => m.Project.productionNotes, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Location Notes</label>
+                @Html.TextAreaFor(m => m.Project.locationNotes, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Distribution Notes</label>
+                @Html.TextAreaFor(m => m.Project.distributionNotes, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Award Notes</label>
+                @Html.TextAreaFor(m => m.Project.awardNotes, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Technical Notes</label>
+                @Html.TextAreaFor(m => m.Project.technicalNotes, new { @class = "form-control" })
+            </div>
+            @Html.HiddenFor(m => m.Project.projectID)
+            @Html.HiddenFor(m => m.Project.recordCreatedDate)
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-success btn-lg btnSaveEdit" value="Save" />
+        </div>
+    </div>
+}

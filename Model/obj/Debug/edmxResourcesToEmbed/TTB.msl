@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TTBModelStoreContainer" CdmEntityContainer="TTBEntities">
+    <EntitySetMapping Name="collections">
+      <EntityTypeMapping TypeName="TTBModel.collection">
+        <MappingFragment StoreEntitySet="collections">
+          <ScalarProperty Name="collectionID" ColumnName="collectionID" />
+          <ScalarProperty Name="collectionName" ColumnName="collectionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="TTBModel.company">
+        <MappingFragment StoreEntitySet="companies">
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="companyWebsite" ColumnName="companyWebsite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companyTypes">
+      <EntityTypeMapping TypeName="TTBModel.companyType">
+        <MappingFragment StoreEntitySet="companyTypes">
+          <ScalarProperty Name="companyTypeID" ColumnName="companyTypeID" />
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dataSets">
+      <EntityTypeMapping TypeName="TTBModel.dataSet">
+        <MappingFragment StoreEntitySet="dataSets">
+          <ScalarProperty Name="dataSetID" ColumnName="dataSetID" />
+          <ScalarProperty Name="dataSetName" ColumnName="dataSetName" />
+          <ScalarProperty Name="specificProjectID" ColumnName="specificProjectID" />
+          <ScalarProperty Name="yAxis" ColumnName="yAxis" />
+          <ScalarProperty Name="xAxis" ColumnName="xAxis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="episodes">
+      <EntityTypeMapping TypeName="TTBModel.episode">
+        <MappingFragment StoreEntitySet="episodes">
+          <ScalarProperty Name="episodeID" ColumnName="episodeID" />
+          <ScalarProperty Name="episodeName" ColumnName="episodeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projectEvents">
+      <EntityTypeMapping TypeName="TTBModel.projectEvent">
+        <MappingFragment StoreEntitySet="events">
+          <ScalarProperty Name="eventID" ColumnName="eventID" />
+          <ScalarProperty Name="eventDate" ColumnName="eventDate" />
+          <ScalarProperty Name="eventName" ColumnName="eventName" />
+          <ScalarProperty Name="typeID" ColumnName="typeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eventTypes">
+      <EntityTypeMapping TypeName="TTBModel.eventType">
+        <MappingFragment StoreEntitySet="eventTypes">
+          <ScalarProperty Name="eventTypeID" ColumnName="eventTypeID" />
+          <ScalarProperty Name="eventTypeName" ColumnName="eventTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genres">
+      <EntityTypeMapping TypeName="TTBModel.genre">
+        <MappingFragment StoreEntitySet="genres">
+          <ScalarProperty Name="genreID" ColumnName="genreID" />
+          <ScalarProperty Name="genreName" ColumnName="genreName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="items">
+      <EntityTypeMapping TypeName="TTBModel.item">
+        <MappingFragment StoreEntitySet="items">
+          <ScalarProperty Name="projectID" ColumnName="projectID" />
+          <ScalarProperty Name="ItemsId" ColumnName="ItemsId" />
+          <ScalarProperty Name="authorID" ColumnName="authorID" />
+          <ScalarProperty Name="slug" ColumnName="slug" />
+          <ScalarProperty Name="itemType" ColumnName="itemType" />
+          <ScalarProperty Name="publishDate" ColumnName="publishDate" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobListings">
+      <EntityTypeMapping TypeName="TTBModel.jobListing">
+        <MappingFragment StoreEntitySet="jobListings">
+          <ScalarProperty Name="jobListingID" ColumnName="jobListingID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="realEmail" ColumnName="realEmail" />
+          <ScalarProperty Name="anonEmail" ColumnName="anonEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="TTBModel.order">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="autoRenew" ColumnName="autoRenew" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="people">
+      <EntityTypeMapping TypeName="TTBModel.person">
+        <MappingFragment StoreEntitySet="people">
+          <ScalarProperty Name="personID" ColumnName="personID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="primaryRoleID" ColumnName="primaryRoleID" />
+          <ScalarProperty Name="archivalTBLink" ColumnName="archivalTBLink" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="birthplace" ColumnName="birthplace" />
+          <ScalarProperty Name="networth" ColumnName="networth" />
+          <ScalarProperty Name="personalNotes" ColumnName="personalNotes" />
+          <ScalarProperty Name="internalNotes" ColumnName="internalNotes" />
+          <ScalarProperty Name="awardNotes" ColumnName="awardNotes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="peopleRoles">
+      <EntityTypeMapping TypeName="TTBModel.peopleRole">
+        <MappingFragment StoreEntitySet="peopleRoles">
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="roleTitle" ColumnName="roleTitle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="peopleToCompanies">
+      <EntityTypeMapping TypeName="TTBModel.peopleToCompany">
+        <MappingFragment StoreEntitySet="peopleToCompanies">
+          <ScalarProperty Name="personID" ColumnName="personID" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="contractNote" ColumnName="contractNote" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="current" ColumnName="current" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="TTBModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="accessLevel" ColumnName="accessLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="quantitativeDataPoints">
+      <EntityTypeMapping TypeName="TTBModel.quantitativeDataPoint">
+        <MappingFragment StoreEntitySet="quantitativeDataPoint">
+          <ScalarProperty Name="quantitativeDataPointID" ColumnName="quantitativeDataPointID" />
+          <ScalarProperty Name="dataSetID" ColumnName="dataSetID" />
+          <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
+          <ScalarProperty Name="dateUpdated" ColumnName="dateUpdated" />
+          <ScalarProperty Name="customDataLabel" ColumnName="customDataLabel" />
+          <ScalarProperty Name="dataAnnotation" ColumnName="dataAnnotation" />
+          <ScalarProperty Name="accordingTo" ColumnName="accordingTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ratings">
+      <EntityTypeMapping TypeName="TTBModel.rating">
+        <MappingFragment StoreEntitySet="ratings">
+          <ScalarProperty Name="ratingID" ColumnName="ratingID" />
+          <ScalarProperty Name="ratingAgency" ColumnName="ratingAgency" />
+          <ScalarProperty Name="ratingName" ColumnName="ratingName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="relationships">
+      <EntityTypeMapping TypeName="TTBModel.relationship">
+        <MappingFragment StoreEntitySet="relationships">
+          <ScalarProperty Name="relationshipID" ColumnName="relationshipID" />
+          <ScalarProperty Name="relationshipName" ColumnName="relationshipName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="socialSearches">
+      <EntityTypeMapping TypeName="TTBModel.socialSearch">
+        <MappingFragment StoreEntitySet="socialSearches">
+          <ScalarProperty Name="socialSearchID" ColumnName="socialSearchID" />
+          <ScalarProperty Name="dataSetID" ColumnName="dataSetID" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="pageID" ColumnName="pageID" />
+          <ScalarProperty Name="keywords" ColumnName="keywords" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="statuses">
+      <EntityTypeMapping TypeName="TTBModel.status">
+        <MappingFragment StoreEntitySet="statuses">
+          <ScalarProperty Name="statusID" ColumnName="statusID" />
+          <ScalarProperty Name="statusName" ColumnName="statusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TTBModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tags">
+      <EntityTypeMapping TypeName="TTBModel.tag">
+        <MappingFragment StoreEntitySet="tags">
+          <ScalarProperty Name="tagID" ColumnName="tagID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webLinks">
+      <EntityTypeMapping TypeName="TTBModel.webLink">
+        <MappingFragment StoreEntitySet="webLinks">
+          <ScalarProperty Name="weblinkID" ColumnName="weblinkID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="listPriority" ColumnName="listPriority" />
+          <ScalarProperty Name="typeID" ColumnName="typeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="weblinksTypes">
+      <EntityTypeMapping TypeName="TTBModel.weblinksType">
+        <MappingFragment StoreEntitySet="weblinksTypes">
+          <ScalarProperty Name="typeID" ColumnName="typeID" />
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="episodesToSeasons">
+      <EntityTypeMapping TypeName="TTBModel.episodesToSeason">
+        <MappingFragment StoreEntitySet="episodesToSeasons">
+          <ScalarProperty Name="seasonID" ColumnName="seasonID" />
+          <ScalarProperty Name="episodeID" ColumnName="episodeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="eventsToProjects">
+      <EntityTypeMapping TypeName="TTBModel.eventsToProject">
+        <MappingFragment StoreEntitySet="eventsToProjects">
+          <ScalarProperty Name="eventID" ColumnName="eventID" />
+          <ScalarProperty Name="projectID" ColumnName="projectID" />
+          <ScalarProperty Name="listPriority" ColumnName="listPriority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="genresToProjects">
+      <EntityTypeMapping TypeName="TTBModel.genresToProject">
+        <MappingFragment StoreEntitySet="genresToProjects">
+          <ScalarProperty Name="genreID" ColumnName="genreID" />
+          <ScalarProperty Name="projectID" ColumnName="projectID" />
+          <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+          <ScalarProperty Name="subGenre" ColumnName="subGenre" />
+          <ScalarProperty Name="listPriority" ColumnName="listPriority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="peopleToProjects">
+      <EntityTypeMapping TypeName="TTBModel.peopleToProject">
+        <MappingFragment StoreEntitySet="peopleToProjects">
+          <ScalarProperty Name="personID" ColumnName="personID" />
+          <ScalarProperty Name="projectID" ColumnName="projectID" />
+          <ScalarProperty Name="roleID" ColumnName="roleID" />
+          <ScalarProperty Name="contractNote" ColumnName="contractNote" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="quantitativeDataToPeoples">
+      <EntityTypeMapping TypeName="TTBModel.quantitativeDataToPeople">
+        <MappingFragment StoreEntitySet="quantitativeDataToPeople">
+          <ScalarProperty Name="quantitativeDataPointID" ColumnName="quantitativeDataPointID" />
+          <ScalarProperty Name="personID" ColumnName="personID" />
+          <ScalarProperty Name="listPriority" ColumnName="listPriority" />
+          <ScalarProperty Name="hidden" ColumnName="hidden" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="quantitativeDataToProjects">
+      <EntityTypeMapping TypeName="TTBModel.quantitativeDataToProject">
+        <MappingFragment StoreEntitySet="quantitativeDataToProjects">
+          <ScalarProperty Name="quantitativeDataPointID" ColumnName="quantitativeDataPointID" />
+          <ScalarProperty Name="projectID" ColumnName="projectID" />
+          <ScalarProperty Name="listPriority" ColumnName="listPriority" />
+          <ScalarProperty Name="hidden" ColumnName="hidden" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tagsToProjects">
+      <EntityTypeMapping TypeName="TTBModel.tagsToProject">
+        <MappingFragment StoreEntitySet="tagsToProjects">
+          <ScalarProperty Name="tagID" ColumnName="tagID" />
+          <ScalarProperty Name="projectID" ColumnName="projectID" />
+          <ScalarProperty Name="dateAdded" ColumnName="dateAdded" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="companyTypesToCompanies" TypeName="TTBModel.companyTypesToCompanies" StoreEntitySet="companyTypesToCompanies">
+      <EndProperty Name="companies">
+        <ScalarProperty Name="companyID" ColumnName="companyID" />
+      </EndProperty>
+      <EndProperty Name="companyTypes">
+        <ScalarProperty Name="companyTypeID" ColumnName="companyTypeID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="itemsToCollections" TypeName="TTBModel.itemsToCollections" StoreEntitySet="itemsToCollections">
+      <EndProperty Name="collections">
+        <ScalarProperty Name="collectionID" ColumnName="collectionID" />
+      </EndProperty>
+      <EndProperty Name="items">
+        <ScalarProperty Name="ItemsId" ColumnName="itemID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="socialSearchToPeople" TypeName="TTBModel.socialSearchToPeople" StoreEntitySet="socialSearchToPeople">
+      <EndProperty Name="people">
+        <ScalarProperty Name="personID" ColumnName="personID" />
+      </EndProperty>
+      <EndProperty Name="socialSearches">
+        <ScalarProperty Name="socialSearchID" ColumnName="socialSearchID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="authors">
+      <EntityTypeMapping TypeName="TTBModel.author">
+        <MappingFragment StoreEntitySet="authors">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="projects">
+      <EntityTypeMapping TypeName="TTBModel.project">
+        <MappingFragment StoreEntitySet="projects">
+          <ScalarProperty Name="technicalNotes" ColumnName="technicalNotes" />
+          <ScalarProperty Name="awardNotes" ColumnName="awardNotes" />
+          <ScalarProperty Name="distributionNotes" ColumnName="distributionNotes" />
+          <ScalarProperty Name="locationNotes" ColumnName="locationNotes" />
+          <ScalarProperty Name="productionNotes" ColumnName="productionNotes" />
+          <ScalarProperty Name="metaCriticID" ColumnName="metaCriticID" />
+          <ScalarProperty Name="imdbID" ColumnName="imdbID" />
+          <ScalarProperty Name="rottenTomatoesID" ColumnName="rottenTomatoesID" />
+          <ScalarProperty Name="synopsis" ColumnName="synopsis" />
+          <ScalarProperty Name="logLine" ColumnName="logLine" />
+          <ScalarProperty Name="runtime" ColumnName="runtime" />
+          <ScalarProperty Name="recordUpdatedDate" ColumnName="recordUpdatedDate" />
+          <ScalarProperty Name="recordCreatedDate" ColumnName="recordCreatedDate" />
+          <ScalarProperty Name="ratingID" ColumnName="ratingID" />
+          <ScalarProperty Name="statusID" ColumnName="statusID" />
+          <ScalarProperty Name="projectName" ColumnName="projectName" />
+          <ScalarProperty Name="projectID" ColumnName="projectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="socialSearchesToProjects" TypeName="TTBModel.socialSearchesToProjects" StoreEntitySet="socialSearchesToProjects">
+      <EndProperty Name="socialSearch">
+        <ScalarProperty Name="socialSearchID" ColumnName="socialSearchID" />
+      </EndProperty>
+      <EndProperty Name="project">
+        <ScalarProperty Name="projectID" ColumnName="projectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="webLinksToProjects" TypeName="TTBModel.webLinksToProjects" StoreEntitySet="webLinksToProjects">
+      <EndProperty Name="webLink">
+        <ScalarProperty Name="weblinkID" ColumnName="webLinkID" />
+      </EndProperty>
+      <EndProperty Name="project">
+        <ScalarProperty Name="projectID" ColumnName="projectID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

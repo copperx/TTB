@@ -1,0 +1,30 @@
+﻿@model IEnumerable<TTB_Model.rating>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Ratings</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Agency</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var rating in Model)
+        {
+            <tr>
+                <td>@rating.ratingName</td>
+                <td>@rating.ratingAgency</td>
+                <td>
+                    @Html.ActionLink("Edit", "AddEditRating", new { id = @rating.ratingID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Add New Rating", "AddEditRating")
+
+</div>

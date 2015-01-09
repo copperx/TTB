@@ -1,0 +1,277 @@
+﻿@model IEnumerable<TTB_Model.project>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="cover-photo clearfix">              
+    <h1 class="page-header">Projects</h1>
+</div>
+
+@*<h2 class="marginTop">Projects</h2>*@
+
+@using (Html.BeginForm("Index", "Home"))
+{
+
+<br />
+<br />
+
+    <div class="input-append">
+        @Html.TextBox("name", null, new {@class = "span2"})
+        <input type="submit" value="Search" class="btn btn-info" />
+        @Html.ActionLink("Reset", "Index", "Home", new {@class="btn btn-warning"})
+    </div>
+}
+<br />
+
+
+@*<div class="row contained clearfix">
+  <div style="margin-top:250px;" class="col-md-4">
+  	<h3 style="margin-top:0">Around the Web</h3>
+  <p>  <span class="data-label">Official Website</span> <a href="#" style="color: red;">Visit</a>
+</p>
+  <p>  <span class="data-label">Official Twitter</span> <a href="#" style="color: red;">Visit</a>
+</p>
+  <p>  <span class="data-label">Official Facebook</span> <a href="#" style="color: red;">Visit</a>
+</p>
+  <p>  <span class="data-label">IMDb</span> <a href="#" style="color: red;">Visit</a>
+</p>
+  	  <p class="data-group">
+  <span class="data-label">Rotten Tomatoes</span> <a href="#" style="color: red;">Visit</a>
+  </p><ul>
+	  <li>Critics Score: 91</li>
+	  <li>Audience Score: 91</li>
+  </ul>
+  <span class="data-label">Meta Critic</span> <a href="#" style="color: red;">Visit</a>
+  <ul>
+	  <li>Critics Score: 86</li>
+  </ul>
+  <p></p>
+
+  </div>
+  <div style="margin-top:50px;" class="col-md-8">
+  <p class="data-group">
+  <span class="data-label">Project Type</span>
+  <span class="data-value">Feature Film</span>
+  </p>
+  <p class="data-group">
+  <span class="data-label">Status</span>
+  <span class="data-value">Released</span>
+  </p>
+  <p class="data-group">
+  <span class="data-label">Release Date</span>
+  <span class="data-value">6 March 1998</span>
+  </p>
+  <p class="data-group">
+  <span class="data-label">Runtime</span>
+  <span class="data-value">103 Minutes</span>
+  </p>
+  <p class="data-group">
+  <span class="data-label">Tagline</span>
+  <span class="data-value"></span>
+  </p>
+  <p>"Dude" Lebowski, mistaken for a millionaire Lebowski, seeks restitution for his ruined rug and enlists his bowling buddies to help get it.</p>
+  <p class="cf"></p><div class="cf people-list">  <span class="data-label">Writers</span>
+  <br>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Ethan Coen</figcaption>
+  </figure>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Joel Coen</figcaption>
+  </figure>
+  </div>
+<p></p>
+  <p class="cf"></p><div class="cf people-list">  <span class="data-label">Cast</span>
+  <br>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Jeff Bridges</figcaption>
+  </figure>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>John Goodman</figcaption>
+  </figure>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Steve Buscemi</figcaption>
+  </figure>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Julianna Moore</figcaption>
+  </figure><div class="more-link cf">See All</div>
+
+  </div>  
+<p></p>
+  <p class="cf"> </p><div class="cf people-list">  
+  <span class="data-label">Crew</span>
+  <br>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Ethan Coen</figcaption>
+  </figure>
+  <figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Director of Photography</figcaption>
+  </figure><figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Art Director</figcaption>
+  </figure><figure class="person">
+	  <img src="http://placehold.it/100x100">
+	  <figcaption>Key Grip</figcaption>
+  </figure><div class="more-link cf">See All</div>
+
+  </div>
+<p></p>
+  </div>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="container body-content">  
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>@project.projectName</td>
+                <td>
+                    <button id="btnViewProject" class="viewProject btn btn-danger" data-id="@project.projectID" data-name="@project.projectName" data-created="@project.recordCreatedDate" data-updated="@project.recordUpdatedDate" data-runtime="@project.runtime" data-logline="@project.logLine" data-rotten="@project.rottenTomatoesID" data-synopsis="@project.synopsis" data-imdb="@project.imdbID" data-metacritic="@project.metaCriticID" data-prodnotes="@project.productionNotes" data-locnotes="@project.locationNotes" data-distnotes="@project.distributionNotes" data-awardnotes="@project.awardNotes" data-technotes="@project.technicalNotes" data-rating="@project.rating.ratingName" data-status="@project.status.statusName">View Details</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<div id="projectDetails" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Project Details</h4>
+                <hr />
+                <div class="container">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Name</label>
+                            <label  for="projectName"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Status</label>
+                            <label for="projectStatus"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Rating</label>
+                            <label for="projectRating"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Created</label>
+                            <label for="projectCreated"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Updated</label>
+                            <label for="projectUpdated"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Runtime</label>
+                            <label for="projectRuntime"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Logline</label>
+                            <label for="projectLogline"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Synopsis</label>
+                            <label for="projectSynopsis"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Rotten Tomatoes ID</label>
+                            <a id="projectRotten" style="color: red;" href="#">Visit</a>
+                            @*<label for="projectRotten"></label>*@
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">MetaCritic ID</label>
+                            <a id="projectMetaCriticID" style="color: red;" href="#">Visit</a>
+                            @*<label for="projectMetaCriticID"></label>*@
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Imdb ID</label>
+                            <a id="projectImdbId" style="color: red;" href="#">Visit</a>
+                            @*<label for="projectImdbId"></label>*@
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Production Notes</label>
+                            <label for="projectProdNotes"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Location Notes</label>
+                            <label for="projectLocationNotes"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Distribution Notes</label>
+                            <label for="projectDistributionNotes"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Award Notes</label>
+                            <label for="projectAwardNotes"></label>
+                        </div>
+                        <div class="form-group">
+                            <label class="popupFont" for="name">Technical Notes</label>
+                            <label for="projectTechNotes"></label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('button.viewProject').click(function () {
+            $('label[for=projectName]').html($(this).data('name'));
+            $('label[for=projectRating]').html($(this).data('rating'));
+            $('label[for=projectStatus]').html($(this).data('status'));
+            $('label[for=projectCreated]').html($(this).data('created'));
+            $('label[for=projectUpdated]').html($(this).data('updated'));
+            $('label[for=projectRuntime]').html($(this).data('runtime'));
+            $('label[for=projectLogline]').html($(this).data('logline'));
+            //$('label[for=projectRotten]').html($(this).data('rotten'));
+            $('label[for=projectSynopsis]').html($(this).data('synopsis'));
+            //$('label[for=projectImdbId]').html($(this).data('imdb'));
+            //$('label[for=projectMetaCriticID]').html($(this).data('metacritic'));
+            $('label[for=projectProdNotes]').html($(this).data('prodnotes'));
+            $('label[for=projectLocationNotes]').html($(this).data('locnotes'));
+            $('label[for=projectDistributionNotes]').html($(this).data('distnotes'));
+            $('label[for=projectAwardNotes]').html($(this).data('awardnotes'));
+            $('label[for=projectTechNotes]').html($(this).data('technotes'));
+
+            $('#projectRotten').prop('href', $(this).data("rotten"));
+            $('#projectImdbId').prop('href', $(this).data("imdb"));
+            $('#projectMetaCriticID').prop('href', $(this).data("metacritic"));
+
+            $('#projectDetails').modal('show');
+        });
+    });
+</script>
+
+</div>

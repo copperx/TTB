@@ -1,0 +1,32 @@
+﻿@model IEnumerable<TTB_Model.projectEvent>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Events</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Date</td>
+            <td>Type</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var projectEvent in Model)
+        {
+            <tr>
+                <td>@projectEvent.eventName</td>
+                <td>@projectEvent.eventDate</td>
+                <td>@projectEvent.eventType.eventTypeName</td>
+                <td>
+                    @Html.ActionLink("Edit", "AddEditEvent", new { id = @projectEvent.eventID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Add New Event", "AddEditEvent")
+
+</div>

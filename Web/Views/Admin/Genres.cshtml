@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TTB_Model.genre>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Genres</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var genre in Model)
+        {
+            <tr>
+                <td>@genre.genreName</td>
+                <td>
+                    @Html.ActionLink("Edit", "AddEditGenre", new { id = @genre.genreID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Add New Genre", "AddEditGenre")
+
+</div>

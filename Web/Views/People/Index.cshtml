@@ -1,0 +1,37 @@
+﻿
+@model IEnumerable<TTB_Model.person>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>People</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Gender</td>
+            <td>Birth Date</td>
+            <td>Birth Place</td>
+            <td>Net Worth</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td>@person.name</td>
+                <td>@person.gender</td>
+                <td>@person.birthdate</td>
+                <td>@person.birthplace</td>
+                <td>@person.networth</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {@class="btn btn-info"})
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+

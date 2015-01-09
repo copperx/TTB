@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TTB_Model.eventType>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Event Names</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var eventType in Model)
+        {
+            <tr>
+                <td>@eventType.eventTypeName</td>
+                <td>
+                    @Html.ActionLink("Edit", "AddEditEventType", new { id = @eventType.eventTypeID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Add New Event Type", "AddEditEventType")
+
+</div>

@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{40063784-C08B-4F94-A18E-A8A51BA28BAF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TTB_Model</RootNamespace>
+    <AssemblyName>TTB_Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="author.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="collection.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="company.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="companyType.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dataSet.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="episode.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="episodesToSeason.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eventsToProject.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="eventType.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="genre.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="genresToProject.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="item.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="jobListing.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="order.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="peopleRole.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="peopleToCompany.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="peopleToProject.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="person.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="product.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="project.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="projectEvent.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="quantitativeDataPoint.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="quantitativeDataToPeople.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="quantitativeDataToProject.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="rating.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="relationship.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="socialSearch.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="status.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tag.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tagsToProject.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TTB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TTB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TTB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="webLink.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="weblinksType.cs">
+      <DependentUpon>TTB.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="TTB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TTB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="TTB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TTB.edmx</DependentUpon>
+      <LastGenOutput>TTB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="TTB.edmx.diagram">
+      <DependentUpon>TTB.edmx</DependentUpon>
+    </None>
+    <None Include="TTB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TTB.edmx</DependentUpon>
+      <LastGenOutput>TTB.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,23 @@
+﻿@model TTB_Model.genre
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Genre</h2>
+
+@using (Html.BeginForm("AddEditGenre", "Admin"))
+{
+    <div class="container">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="name">Name</label>
+                @Html.TextBoxFor(m => m.genreName, new { @class = "form-control" })
+            </div>
+            @Html.HiddenFor(e => e.genreID)
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-success btn-lg btnSaveEdit" value="Save" />
+        </div>
+    </div>
+}

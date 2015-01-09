@@ -1,0 +1,27 @@
+﻿@model TTB_Model.rating
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Add/Edit Ratings</h2>
+
+@using (Html.BeginForm("AddEditRating", "Admin"))
+{
+    <div class="container">
+        <div class="col-md-8">
+    <div class="form-group">
+        <label for="name">Name</label>
+        @Html.TextBoxFor(m => m.ratingName, new { @class = "form-control" })
+    </div>
+            <div class="form-group">
+                <label for="name">Agency</label>
+                @Html.TextBoxFor(m => m.ratingAgency, new { @class = "form-control" })
+            </div>
+            @Html.HiddenFor(r => r.ratingID)
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-success btn-lg btnSaveEdit" value="Save" />
+        </div>
+    </div>
+}

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<TTB_Model.author>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Authors</h2>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@author.Name</td>
+                <td>
+                    @Html.ActionLink("Edit", "AddEditAuthor", new { id = @author.ID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Add New Author", "AddEditAuthor")
+
+</div>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TTB_Model.project>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Projects</h2>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <td>Name</td>
+            <td>Actions</td>
+        </tr>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>                    
+                    @Html.ActionLink(@project.projectName, "ProjectDetails", new { id = @project.projectID }, new { @class = "" })
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "AddEditProject", new { id = @project.projectID }, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </table>
+
+    @Html.ActionLink("Add New Project", "AddEditProject")
+
+</div>

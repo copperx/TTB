@@ -1,0 +1,64 @@
+﻿@model TTB_Model.person
+
+@{
+    Layout = "~/Views/Shared/_Layout_Main.cshtml";
+}
+
+<h2>Add New Person</h2>
+
+@using (Html.BeginForm("AddEditPerson", "Admin"))
+{
+    <div class="container">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="name">Name</label>
+                @Html.TextBoxFor(m => m.name, new {@class="form-control"})
+                @Html.ValidationMessageFor(m => m.name, String.Empty, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                <label for="name">Gender</label>
+                @Html.TextBoxFor(m => m.gender, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.gender, String.Empty, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                <label for="name">Archival TB Link</label>
+                @Html.TextBoxFor(m => m.archivalTBLink, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Birth Date</label>
+                @Html.TextBoxFor(m => m.birthdate, new { @class = "datepicker form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Birth Place</label>
+                @Html.TextBoxFor(m => m.birthplace, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Net Worth</label>
+                @Html.TextBoxFor(m => m.networth, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Personal Notes</label>
+                @Html.TextAreaFor(m => m.personalNotes, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Internal Notes</label>
+                @Html.TextAreaFor(m => m.internalNotes, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="name">Award Notes</label>
+                @Html.TextAreaFor(m => m.awardNotes, new { @class = "form-control" })
+            </div>
+            @Html.HiddenFor(m => m.personID)
+        </div>
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-success btn-lg btnSaveEdit" value="Save" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').datepicker();
+    });
+
+</script>

@@ -1,0 +1,3 @@
+﻿@model TTB.ViewModels.EventViewModel
+<label for="name">Event Type</label>
+@Html.DropDownListFor(v => v.ProjectEvent.eventType, new SelectList(Model.eventTypes, "eventTypeID", "eventTypeName", Model.ProjectEvent.typeID), new { @class = "form-control dropdown" })

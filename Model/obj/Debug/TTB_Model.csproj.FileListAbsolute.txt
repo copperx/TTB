@@ -1,0 +1,20 @@
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\bin\Debug\TTB_Model.dll.config
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\bin\Debug\TTB_Model.dll
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\bin\Debug\TTB_Model.pdb
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\bin\Debug\EntityFramework.dll
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\bin\Debug\EntityFramework.SqlServer.dll
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\bin\Debug\EntityFramework.xml
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\bin\Debug\EntityFramework.SqlServer.xml
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\obj\Debug\TTB_Model.dll
+c:\Users\Angel\documents\visual studio 2013\Projects\TTB\TTB_Model\obj\Debug\TTB_Model.pdb
+C:\Users\Angel\Documents\Visual Studio 2013\Projects\TTB\TTB_Model\obj\Debug\TTB_Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Debug\TTB_Model.dll.config
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Debug\TTB_Model.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Debug\TTB_Model.pdb
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Debug\EntityFramework.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Debug\EntityFramework.xml
+C:\Users\Administrator\Desktop\TTB\TTB_Model\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Administrator\Desktop\TTB\TTB_Model\obj\Debug\TTB_Model.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\TTB\TTB_Model\obj\Debug\TTB_Model.dll
+C:\Users\Administrator\Desktop\TTB\TTB_Model\obj\Debug\TTB_Model.pdb

@@ -1,0 +1,123 @@
+﻿@model TTB.ViewModels.ProjectViewModel
+
+@Scripts.Render("~/bundles/jquery")
+
+<div class="cover-photoAdm clearfix">              
+    <h1 class="page-header">Project Details</h1>
+</div>
+
+
+@using (Html.BeginForm("AddEditProject", "Home"))
+{
+    <div class="container">
+        <div class="col-md-20">            
+            <div class="row contained clearfix">
+              <div style="margin-top:250px;" class="col-md-4">
+  	            <h3 style="margin-top:0">Links</h3>
+                 <div class="form-group">
+                        <label class="popupFont" for="name">Rotten Tomatoes ID</label>  
+                        <a id="rottenTomatoesID" style="color: red;" href="#">Visit</a>
+                        @Html.TextBoxFor(m => m.Project.rottenTomatoesID, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Imdb Id</label>                       
+                        <a id="imdbID" style="color: red;" href="#">Visit</a>
+                        @Html.TextBoxFor(m => m.Project.imdbID, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">MetaCritic ID</label>
+                        <a id="metaCriticID" style="color: red;" href="#">Visit</a>
+                        @Html.TextBoxFor(m => m.Project.metaCriticID, new { @class = "form-controling" })
+                    </div>
+              </div>
+              <div style="margin-top:50px;" class="col-md-8">
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Name</label>
+                        <label id="projectName"></label>
+                        @Html.TextBoxFor(m => m.Project.projectName, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Status</label>
+                        <label id="statusName"></label>
+                        @Html.DropDownListFor(v => v.Project.statusID, new SelectList(Model.Statuses, "statusID", "statusName"), new { @class = "form-controling dropdown" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Rating</label>
+                        <label id="ratingName"></label>
+                        @Html.DropDownListFor(v => v.Project.ratingID, new SelectList(Model.Ratings, "ratingID", "ratingName"), new { @class = "form-controling dropdown" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Runtime</label>
+                        <label id="runtime"></label>
+                        @Html.TextBoxFor(m => m.Project.runtime, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Logline</label>
+                        <label id="logLine"></label>
+                        @Html.TextBoxFor(m => m.Project.logLine, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Synopsis</label>
+                        <label id="synopsis"></label>
+                        @Html.TextAreaFor(m => m.Project.synopsis, new { @class = "form-controling" })
+                    </div>
+           
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Production Notes</label>
+                        <label id="productionNotes"></label>
+                        @Html.TextAreaFor(m => m.Project.productionNotes, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Location Notes</label>
+                        <label id="locationNotes"></label>
+                        @Html.TextAreaFor(m => m.Project.locationNotes, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Distribution Notes</label>
+                        <label id="distributionNotes"></label>
+                        @Html.TextAreaFor(m => m.Project.distributionNotes, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Award Notes</label>
+                        <label id="awardNotes"></label>
+                        @Html.TextAreaFor(m => m.Project.awardNotes, new { @class = "form-controling" })
+                    </div>
+                    <div class="form-group">
+                        <label class="popupFont" for="name">Technical Notes</label>
+                        <label id="technicalNotes"></label>
+                        @Html.TextAreaFor(m => m.Project.technicalNotes, new { @class = "form-controling" })
+                    </div>
+                    @Html.HiddenFor(m => m.Project.projectID)
+                    @Html.HiddenFor(m => m.Project.recordCreatedDate)
+              </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#projectName').html($('#Project_projectName').val());
+        $('#rottenTomatoesID').prop('href', $('#Project_rottenTomatoesID').val());       
+        $('#imdbID').prop('href', $('#Project_imdbID').val());
+        $('#metaCriticID').prop('href', $('#Project_metaCriticID').val());
+
+        $('#statusName').html($('#Project_statusID').find(':selected').text());
+        $('#ratingName').html($('#Project_ratingID').find(':selected').text());
+
+        $('#runtime').html($('#Project_runtime').val());
+        $('#logLine').html($('#Project_logLine').val());
+        $('#synopsis').html($('#Project_synopsis').val());
+        $('#productionNotes').html($('#Project_productionNotes').val());
+        $('#locationNotes').html($('#Project_locationNotes').val());
+        $('#awardNotes').html($('#Project_awardNotes').val());
+        $('#technicalNotes').html($('#Project_technicalNotes').val());
+    });
+</script>
+
+
+
